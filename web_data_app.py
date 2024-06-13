@@ -82,7 +82,12 @@ def book_data():
 
     # Create a DataFrame using the two lists
     book_data = pd.DataFrame(list(zip(titles, prices)), columns=['Titles','Prices'])    
+
+    # Calculate the sale price (reduced by 25%)
+    book_data['Sale Prices'] = (book_data['Prices'] * 0.75).round(2)
+
     print(book_data)        # Print to the terminal as confirmation - only we can see this
+
 
     # Format and print the DataFrame using the html template provided in the templates subdirectory
     return render_template('template.html',  tables=[book_data.to_html(classes='data')], titles=book_data.columns.values)
